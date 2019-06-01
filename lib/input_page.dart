@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'top_card_content.dart';
 import 'reusable_card.dart';
+import 'gender.dart';
 
 const bottonContainerHeight = 80.0;
-const colorContainer = Color(0xFFEB1555);
-const colorCard = Color(0xFF1D1E33);
+const bottonContainerColour = Color(0xFFEB1555);
+const activeCardColor = Color(0xFF1D1E33);
+const inactiveCardColor = Color(0xFF111328);
 
 class InputPage extends StatefulWidget {
   @override
@@ -13,6 +15,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +32,14 @@ class _InputPageState extends State<InputPage> {
                 children: <Widget>[
                   Expanded(
                     child: ReusableCard(
-                      colour: colorCard,
+                      onTap: () {
+                        setState(() {
+                          selectedGender = Gender.MALE;
+                        });
+                      },
+                      colour: selectedGender == Gender.MALE
+                          ? activeCardColor
+                          : inactiveCardColor,
                       cardChild: TopCardContent(
                         icone: FontAwesomeIcons.male,
                         text: 'MALE',
@@ -37,7 +48,14 @@ class _InputPageState extends State<InputPage> {
                   ),
                   Expanded(
                     child: ReusableCard(
-                      colour: colorCard,
+                      onTap: () {
+                        setState(() {
+                          selectedGender = Gender.FEMALE;
+                        });
+                      },
+                      colour: selectedGender == Gender.FEMALE
+                          ? activeCardColor
+                          : inactiveCardColor,
                       cardChild: TopCardContent(
                         icone: FontAwesomeIcons.female,
                         text: 'FEMALE',
@@ -49,7 +67,7 @@ class _InputPageState extends State<InputPage> {
             ),
             Expanded(
               child: ReusableCard(
-                colour: colorCard,
+                colour: activeCardColor,
                 cardChild: Container(),
               ),
             ),
@@ -58,13 +76,13 @@ class _InputPageState extends State<InputPage> {
                 children: <Widget>[
                   Expanded(
                     child: ReusableCard(
-                      colour: colorCard,
+                      colour: activeCardColor,
                       cardChild: Container(),
                     ),
                   ),
                   Expanded(
                     child: ReusableCard(
-                      colour: colorCard,
+                      colour: activeCardColor,
                       cardChild: Container(),
                     ),
                   ),
@@ -72,7 +90,7 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             Container(
-              color: colorContainer,
+              color: bottonContainerColour,
               margin: EdgeInsets.only(top: 10),
               width: double.infinity,
               height: bottonContainerHeight,
