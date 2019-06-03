@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+import 'package:bmi_calculator/constants.dart';
 
 class TopCardContent extends StatelessWidget {
   final IconData icone;
